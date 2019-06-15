@@ -25,7 +25,7 @@ class User(AbstractBaseUser, PermissionMixin):
     objects = UserManager()
 
     # ユーザのユニークなキーを設定
-    USERNAME_FIELD = 'user_id'
+    USERNAME_FIELD = 'id'
     # ユーザモデルのEメールフィールドの設定
     EMAIL_FIELD = 'email'
     # 入力必須項目。USERNAME_FIELDとpasswordは書かなくてよい（常に必要なため）
