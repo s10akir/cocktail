@@ -7,4 +7,5 @@ services:
       - 80:8000
     volumes:
       - ./src:/app
+      - ./.vscode-server:/root/.vscode-server
     tty: true
