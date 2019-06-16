@@ -4,6 +4,8 @@ from django.db import models
 from django.contrib.auth.models import PermissionsMixin
 from django.contrib.auth.base_user import AbstractBaseUser
 
+from users.models.user_manager import UserManager
+
 
 class User(AbstractBaseUser, PermissionsMixin):
     # 代理キー（UUIDで実現）
