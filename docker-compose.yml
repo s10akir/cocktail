@@ -24,5 +24,5 @@ services:
       MYSQL_DATABASE: cocktail
       MYSQL_USER: user
       MYSQL_PASSWORD: password
-    command: command: --innodb-flush-method=O_DSYNC
+    command: --innodb-flush-method=O_DSYNC
 
