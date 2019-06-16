@@ -8,7 +8,7 @@ from django.contrib.auth.base_user import AbstractBaseUser
 class User(AbstractBaseUser, PermissionsMixin):
     # 代理キー（UUIDで実現）
     id = models.UUIDField(primary_key=True, default=uuid.uuid4,
-                               editable=False)
+                          editable=False)
     # アカウント作成日（DBにINSERTしたときで判断）
     created_at = models.DateTimeField(auto_now_add=True)
     update_at = models.DateTimeField(auto_now=True)
