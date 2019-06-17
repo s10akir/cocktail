@@ -1,16 +1,14 @@
-from django.db import models
-from django.contrib.auth.models import AbstractBaseUser, PermissionsMixin, BaseUserManager
+from django.contrib.auth.models import BaseUserManager
+
 
 class UserManager(BaseUserManager):
     def _create_user(self, user_id, email, password, **extra_fields):
-        # emailの確認
         if not email:
             raise ValueError('The given email must be set')
 
         email = self.normalize_email(email)
         user_id = self.model.normalize_user_id(user_id)
 
-        # 項目をuserに入れる
         user = self.model(
             user_id = user_id,
             email = email,
@@ -24,14 +22,14 @@ class UserManager(BaseUserManager):
         return user
 
     def create_user(self, user_id, email, password, **extra_fields):
-        # 一般ユーザーか確認
+        # is_staff, is_superuerが引数になければ値をFalseにして追加
         extra_fields.setdefault('is_staff', False)
         extra_fields.setdefault('is_superuser', False)
         
         return self._create_user(user_id, email, password, **extra_fields)
 
     def create_superuser(self, user_id, email, password, **extra_fields):
-        # スーパーユーザーか確認
+        # is_staff, is_superuerが引数になければ値をTrueにして追加
         extra_fields.setdefault('is_staff', True)
         extra_fields.setdefault('is_superuser', True)
 
