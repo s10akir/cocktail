@@ -9,3 +9,22 @@ services:
       - ./src:/app
       - ./.vscode-server:/root/.vscode-server
     tty: true
+    depends_on:
+      - db
+
+  db:
+    image: mariadb
+    restart: always
+    ports:
+      - 3306:3306
+    volumes:
+      - ./data:/var/lib/mysql
+    container_name: maria
+    environment:
+      # TODO: .envとして外に出す
+      MYSQL_ROOT_PASSWORD: password
+      MYSQL_DATABASE: cocktail
+      MYSQL_USER: user
+      MYSQL_PASSWORD: password
+    command: --innodb-flush-method=O_DSYNC
+
