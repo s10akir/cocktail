@@ -31,4 +31,4 @@ class User(AbstractBaseUser, PermissionsMixin):
     # ユーザモデルのEメールフィールドの設定
     EMAIL_FIELD = 'email'
     # 入力必須項目。USERNAME_FIELDとpasswordは書かなくてよい（常に必要なため）
-    REQUIRED_FIELDS = ['email']
+    REQUIRED_FIELDS = []
