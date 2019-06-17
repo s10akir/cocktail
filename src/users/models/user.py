@@ -26,8 +26,8 @@ class User(AbstractBaseUser, PermissionsMixin):
     # 標準のBaseUserManagerを使う代わりにUserManagerを使うことを明示
     objects = UserManager()
 
-    # ユーザのユニークなキーを設定
-    USERNAME_FIELD = 'id'
+    # ユーザのユニークなキーを設定（ログイン時に使用されるID的なもの）
+    USERNAME_FIELD = 'email'
     # ユーザモデルのEメールフィールドの設定
     EMAIL_FIELD = 'email'
     # 入力必須項目。USERNAME_FIELDとpasswordは書かなくてよい（常に必要なため）
