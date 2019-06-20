@@ -1,7 +1,9 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate
+from django.contrib.auth.views import LoginView
 
 from .forms import SignupForm
+from .forms import LoginForm
 
 
 def signup(request):
@@ -16,3 +18,7 @@ def signup(request):
     else:
         form = SignupForm()
     return render(request, 'signup.html', {'form': form})
+
+class Login(LoginView):
+    form_class = LoginForm
+    template_name = 'login.html'
