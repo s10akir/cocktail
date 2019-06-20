@@ -22,3 +22,6 @@ def signup(request):
 class Login(LoginView):
     form_class = LoginForm
     template_name = 'login.html'
+
+class Loggedout(LoginView):
+    template_name = 'loggedout.html'
