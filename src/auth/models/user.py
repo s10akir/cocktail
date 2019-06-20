@@ -14,9 +14,8 @@ class User(AbstractBaseUser, PermissionsMixin):
     # アカウント作成日（DBにINSERTしたときで判断）
     created_at = models.DateTimeField(auto_now_add=True)
     update_at = models.DateTimeField(auto_now=True)
-    # とりあえず20文字
-    password = models.CharField(max_length=20)
-    before_password = models.CharField(max_length=20)
+    password = models.CharField(max_length=256)
+    before_password = models.CharField(max_length=256)
     email = models.EmailField(max_length=254, unique=True)
     # 組織名または個人名
     name = models.CharField(max_length=50)
