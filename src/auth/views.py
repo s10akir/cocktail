@@ -13,7 +13,7 @@ def signup(request):
             form.save()
             email = form.cleaned_data.get('email')
             raw_password = form.cleaned_data.get('password1')
-            user = authenticate(email=email, password=raw_password)
+            authenticate(email=email, password=raw_password)
             return redirect('/user/login')
     else:
         form = SignupForm()
