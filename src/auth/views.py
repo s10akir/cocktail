@@ -19,8 +19,10 @@ def signup(request):
         form = SignupForm()
     return render(request, 'signup.html', {'form': form})
 
+
 def loggedout(request):
     return render(request, 'loggedout.html')
+
 
 class Login(LoginView):
     form_class = LoginForm
