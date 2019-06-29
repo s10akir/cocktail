@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate
 from django.contrib.auth.views import LoginView
+from django.contrib.auth.decorators import login_required
 
 from .forms import SignupForm
 from .forms import LoginForm
@@ -30,6 +31,7 @@ class Login(LoginView):
     template_name = 'login.html'
 
 
+@login_required
 def withdrawal(request):
     if request.method == 'POST':
         form = withdrawalForm(request.POST)
@@ -40,7 +42,7 @@ def withdrawal(request):
             if user is not None:
                 user.is_active = False
                 user.save()
-                return redirect("/")    
+                return redirect("/")
     else:
         form = withdrawalForm()
 
