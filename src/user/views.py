@@ -42,10 +42,14 @@ def withdrawal(request):
             if user is not None:
                 user.is_active = False
                 user.save()
-                return redirect("/")
+                return redirect("/user/withdrew")
             else:
                 form.add_error(None, "パスワードが違います")
     else:
         form = withdrawalForm()
 
     return render(request, 'withdrawal.html', {'form': form})
+
+
+def withdrew(request):
+    return render(request, 'withdrew.html')
