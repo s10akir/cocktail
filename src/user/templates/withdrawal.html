@@ -1,0 +1,10 @@
+{% block content %}
+    <h1>退会しますか</h1>
+    <form action="" method="POST">
+        {% csrf_token %}
+        <p>ユーザー名 : {{ user.email }}</p>
+        {{ form.password }}
+        <button type="submit">退会</button>
+        <input type="hidden" name="next" value="{{ next }}" />
+    </form>
+{% endblock %}

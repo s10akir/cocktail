@@ -20,3 +20,7 @@ class LoginForm(AuthenticationForm):
         super().__init__(*args, **kwargs)
         for field in self.fields.values():
             field.widget.attrs['placeholder'] = field.label
+
+
+class withdrawalForm(forms.Form):
+    password = forms.CharField(widget=forms.PasswordInput())

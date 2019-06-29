@@ -4,6 +4,7 @@ from django.contrib.auth.views import LoginView
 
 from .forms import SignupForm
 from .forms import LoginForm
+from .forms import withdrawalForm
 
 
 def signup(request):
@@ -27,3 +28,20 @@ def loggedout(request):
 class Login(LoginView):
     form_class = LoginForm
     template_name = 'login.html'
+
+
+def withdrawal(request):
+    if request.method == 'POST':
+        form = withdrawalForm(request.POST)
+        if form.is_valid():
+            email = request.user
+            raw_password = form.cleaned_data.get('password')
+            user = authenticate(email=email, password=raw_password)
+            if user is not None:
+                user.is_active = False
+                user.save()
+                return redirect("/")    
+    else:
+        form = withdrawalForm()
+
+    return render(request, 'withdrawal.html', {'form': form})
