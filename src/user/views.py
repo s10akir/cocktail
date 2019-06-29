@@ -41,6 +41,8 @@ def passwordAuth(request):
             user = authenticate(email=email, password=raw_password)
             if user is not None:
                 return redirect("/")
+            else:
+                form.add_error(None, "パスワードが違います")
     else:
         form = PasswordAuthForm()
 
