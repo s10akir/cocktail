@@ -3,6 +3,9 @@
     <form action="" method="POST">
         {% csrf_token %}
         <p>ユーザー名 : {{ user.email }}</p>
+        {% for error in form.non_field_errors %}
+            <p style="color: red">{{ error }}</p>
+        {% endfor %}
         {{ form.password }}
         <button type="submit">退会</button>
         <input type="hidden" name="next" value="{{ next }}" />
