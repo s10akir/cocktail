@@ -23,6 +23,4 @@ class LoginForm(AuthenticationForm):
 
 
 class PasswordAuthForm(forms.Form):
-    password = forms.CharField(
-        widget=forms.PasswordInput(),   # パスワードフィールド
-    )
+    password = forms.CharField(widget=forms.PasswordInput())
