@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate
 from django.contrib.auth.views import LoginView
+from django.contrib.auth.decorators import login_required
 
 from .forms import SignupForm
 from .forms import LoginForm
@@ -30,6 +31,7 @@ class Login(LoginView):
     template_name = 'login.html'
 
 
+@login_required     # ログインしていないと見れないように
 def passwordAuth(request):
     if request.method == 'POST':
         form = PasswordAuthForm(request.POST)
