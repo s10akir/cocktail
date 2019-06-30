@@ -20,3 +20,12 @@ class LoginForm(AuthenticationForm):
         super().__init__(*args, **kwargs)
         for field in self.fields.values():
             field.widget.attrs['placeholder'] = field.label
+
+
+class UpdateForm(forms.ModelForm):
+    name = forms.CharField(max_length=50, help_text='新しい個人名を入力してください')
+    email = forms.EmailField(max_length=254, help_text='新しいメールアドレスを入力してください')
+
+    class Meta():
+        model = User
+        fields = ("name", "email")

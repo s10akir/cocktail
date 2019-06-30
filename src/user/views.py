@@ -4,6 +4,7 @@ from django.contrib.auth.views import LoginView
 
 from .forms import SignupForm
 from .forms import LoginForm
+from .forms import UpdateForm
 
 
 def signup(request):
@@ -27,3 +28,14 @@ def loggedout(request):
 class Login(LoginView):
     form_class = LoginForm
     template_name = 'login.html'
+
+
+def update(request):
+    if request.method == 'POST':
+        form = UpdateForm(request.POST, instance=request.user)
+        if form.is_valid():
+            form.save()
+            return redirect('')
+    elif request.method == "GET":
+        form = UpdateForm(instance=request.user)
+        return render(request, 'updateInformation.html', {'form': form})
