@@ -23,6 +23,18 @@ class LoginForm(AuthenticationForm):
 
 
 class PasswordUpdateForm(PasswordChangeForm):
+    def clean(self):
+        old_password = self.cleaned_data.get('old_password')
+        new_password = self.cleaned_data.get('new_password1')
+        if old_password == new_password:
+            raise forms.ValidationError("パスワードが同じ")
+        else:
+            self.save()
+
+    class Meta:
+        model = User
+        fields = ('old_password', 'new_password1', 'new_password2')
+
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         for field in self.fields.values():
