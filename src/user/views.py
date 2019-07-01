@@ -35,7 +35,11 @@ def update(request):
         form = UpdateForm(request.POST, instance=request.user)
         if form.is_valid():
             form.save()
-            return redirect('')
+            return redirect('/user/updated')
     elif request.method == "GET":
         form = UpdateForm(instance=request.user)
         return render(request, 'update-information.html', {'form': form})
+
+
+def updated(request):
+    return render(request, 'updated.html')
