@@ -38,4 +38,4 @@ def update(request):
             return redirect('')
     elif request.method == "GET":
         form = UpdateForm(instance=request.user)
-        return render(request, 'updateInformation.html', {'form': form})
+        return render(request, 'update-information.html', {'form': form})
