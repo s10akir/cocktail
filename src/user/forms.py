@@ -1,4 +1,3 @@
-# from django.contrib.auth import get_user_model
 from django.contrib.auth.forms import (UserCreationForm, AuthenticationForm,
                                        PasswordChangeForm)
 
@@ -24,6 +23,7 @@ class LoginForm(AuthenticationForm):
 
 
 class PasswordUpdateForm(PasswordChangeForm):
+    # 新規パスワードがoldもしくはbeforeを同じでないか確認
     def clean(self):
         old_password = self.cleaned_data.get('old_password')
         new_password = self.cleaned_data.get('new_password1')
