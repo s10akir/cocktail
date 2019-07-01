@@ -31,6 +31,10 @@ def loggedout(request):
     return render(request, 'loggedout.html')
 
 
+def test(request, *args, **kwargs):
+    PasswordChange.as_view()
+
+
 class Login(LoginView):
     form_class = LoginForm
     template_name = 'login.html'

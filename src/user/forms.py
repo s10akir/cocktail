@@ -1,9 +1,10 @@
-from django.contrib.auth import get_user_model
+# from django.contrib.auth import get_user_model
 from django.contrib.auth.forms import (UserCreationForm, AuthenticationForm,
                                        PasswordChangeForm)
+
 from django import forms
 
-User = get_user_model()
+from user.models.user import User
 
 
 class SignupForm(UserCreationForm):
@@ -28,8 +29,8 @@ class PasswordUpdateForm(PasswordChangeForm):
         new_password = self.cleaned_data.get('new_password1')
         if old_password == new_password:
             raise forms.ValidationError("パスワードが同じ")
-        else:
-            self.save()
+        elif self.user.old_password_validator(new_password):
+            raise forms.ValidationError("前回のパスワードと同じ")
 
     class Meta:
         model = User
@@ -39,3 +40,10 @@ class PasswordUpdateForm(PasswordChangeForm):
         super().__init__(*args, **kwargs)
         for field in self.fields.values():
             field.widget.attrs['placeholder'] = field.label
+
+    def save(self, commit=True):
+        self.user.set_password(self.cleaned_data['new_password1'])
+        self.user.set_before_password(self.cleaned_data['old_password'])
+        if commit:
+            self.user.save()
+        return self.user
