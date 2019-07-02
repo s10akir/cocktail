@@ -40,10 +40,10 @@ def passwordAuth(request):
             raw_password = form.cleaned_data.get('password')
             user = authenticate(email=email, password=raw_password)
             if user is not None:
-                return redirect("/")
+                return redirect('/')
             else:
-                form.add_error(None, "パスワードが違います")
+                form.add_error(None, 'パスワードが違います')
     else:
         form = PasswordAuthForm()
 
-    return render(request, 'password_auth.html', {'form': form})
+    return render(request, 'password-auth.html', {'form': form})
