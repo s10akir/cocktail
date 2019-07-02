@@ -42,9 +42,9 @@ def withdrawal(request):
             if user is not None:
                 user.is_active = False
                 user.save()
-                return redirect("/user/withdrew")
+                return redirect('/user/withdrew')
             else:
-                form.add_error(None, "パスワードが違います")
+                form.add_error(None, 'パスワードが違います')
     else:
         form = withdrawalForm()
 
