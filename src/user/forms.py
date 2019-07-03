@@ -28,4 +28,4 @@ class UpdateForm(forms.ModelForm):
 
     class Meta():
         model = User
-        fields = ("name", "email")
+        fields = ('name', 'email')

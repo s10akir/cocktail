@@ -40,11 +40,11 @@ def update(request):
                 form.add_error(None, '同じEmailです。別のEmailを入力してください。')
             else:
                 form.save()
-                return redirect('/user/updated')
+                return redirect('/user/updated-information')
     elif request.method == 'GET':
         form = UpdateForm(instance=request.user)
     return render(request, 'update-information.html', {'form': form})
 
 
 def updated(request):
-    return render(request, 'updated.html')
+    return render(request, 'updated-information.html')
