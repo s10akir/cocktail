@@ -22,7 +22,7 @@ class LoginForm(AuthenticationForm):
             field.widget.attrs['placeholder'] = field.label
 
 
-class UpdateForm(forms.ModelForm):
+class UpdateInfoForm(forms.ModelForm):
     name = forms.CharField(max_length=50, help_text='新しい個人名を入力してください')
     email = forms.EmailField(max_length=254, help_text='新しいメールアドレスを入力してください')
 

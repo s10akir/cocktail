@@ -4,7 +4,7 @@ from django.contrib.auth.views import LoginView
 
 from .forms import SignupForm
 from .forms import LoginForm
-from .forms import UpdateForm
+from .forms import UpdateInfoForm
 
 
 def signup(request):
@@ -30,9 +30,9 @@ class Login(LoginView):
     template_name = 'login.html'
 
 
-def update(request):
+def updateInfo(request):
     if request.method == 'POST':
-        form = UpdateForm(request.POST, instance=request.user)
+        form = UpdateInfoForm(request.POST, instance=request.user)
         email = request.user.email
         if form.is_valid():
             new_email = form.cleaned_data.get('email')
@@ -42,9 +42,9 @@ def update(request):
                 form.save()
                 return redirect('/user/updated-information')
     elif request.method == 'GET':
-        form = UpdateForm(instance=request.user)
+        form = UpdateInfoForm(instance=request.user)
     return render(request, 'update-information.html', {'form': form})
 
 
-def updated(request):
+def updatedInfo(request):
     return render(request, 'updated-information.html')
