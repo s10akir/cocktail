@@ -28,9 +28,9 @@ class PasswordUpdateForm(PasswordChangeForm):
         old_password = self.cleaned_data.get('old_password')
         new_password = self.cleaned_data.get('new_password1')
         if old_password == new_password:
-            raise forms.ValidationError("パスワードが同じ")
+            raise forms.ValidationError('パスワードが同じ')
         elif self.user.old_password_validator(new_password):
-            raise forms.ValidationError("前回のパスワードと同じ")
+            raise forms.ValidationError('前回のパスワードと同じ')
 
     class Meta:
         model = User
