@@ -41,7 +41,7 @@ def update(request):
             else:
                 form.save()
                 return redirect('/user/updated')
-    elif request.method == "GET":
+    elif request.method == 'GET':
         form = UpdateForm(instance=request.user)
     return render(request, 'update-information.html', {'form': form})
 
