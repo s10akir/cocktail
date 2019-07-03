@@ -33,12 +33,17 @@ class Login(LoginView):
 def update(request):
     if request.method == 'POST':
         form = UpdateForm(request.POST, instance=request.user)
+        email = request.user.email
         if form.is_valid():
-            form.save()
-            return redirect('/user/updated')
+            new_email = form.cleaned_data.get('email')
+            if email == new_email:
+                form.add_error(None, '同じEmailです。別のEmailを入力してください。')
+            else:
+                form.save()
+                return redirect('/user/updated')
     elif request.method == "GET":
         form = UpdateForm(instance=request.user)
-        return render(request, 'update-information.html', {'form': form})
+    return render(request, 'update-information.html', {'form': form})
 
 
 def updated(request):
