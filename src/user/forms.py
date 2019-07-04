@@ -22,6 +22,10 @@ class LoginForm(AuthenticationForm):
             field.widget.attrs['placeholder'] = field.label
 
 
+class PasswordAuthForm(forms.Form):
+    password = forms.CharField(widget=forms.PasswordInput())
+
+
 class withdrawalForm(forms.Form):
     password = forms.CharField(widget=forms.PasswordInput())
 

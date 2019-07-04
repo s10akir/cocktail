@@ -5,6 +5,7 @@ from django.contrib.auth.decorators import login_required
 
 from .forms import SignupForm
 from .forms import LoginForm
+from .forms import PasswordAuthForm
 from .forms import withdrawalForm
 from .forms import UpdateInfoForm
 
@@ -32,6 +33,12 @@ class Login(LoginView):
     template_name = 'login.html'
 
 
+@login_required     # ログインしていないと見れないように
+def passwordAuth(request):
+    if request.method == 'POST':
+        form = PasswordAuthForm(request.POST)
+
+
 @login_required
 def withdrawal(request):
     if request.method == 'POST':
@@ -41,6 +48,13 @@ def withdrawal(request):
             raw_password = form.cleaned_data.get('password')
             user = authenticate(email=email, password=raw_password)
             if user is not None:
+                return redirect('/')
+            else:
+                form.add_error(None, 'パスワードが違います')
+    else:
+        form = PasswordAuthForm()
+
+    return render(request, 'password-auth.html', {'form': form})
                 user.is_active = False
                 user.save()
                 return redirect('/user/withdrew')
