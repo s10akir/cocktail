@@ -22,6 +22,10 @@ class LoginForm(AuthenticationForm):
             field.widget.attrs['placeholder'] = field.label
 
 
+class withdrawalForm(forms.Form):
+    password = forms.CharField(widget=forms.PasswordInput())
+
+
 class UpdateInfoForm(forms.ModelForm):
     name = forms.CharField(max_length=50, help_text='新しい個人名を入力してください')
     email = forms.EmailField(max_length=254, help_text='新しいメールアドレスを入力してください')

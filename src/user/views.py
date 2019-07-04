@@ -1,9 +1,11 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate
 from django.contrib.auth.views import LoginView
+from django.contrib.auth.decorators import login_required
 
 from .forms import SignupForm
 from .forms import LoginForm
+from .forms import withdrawalForm
 from .forms import UpdateInfoForm
 
 
@@ -28,6 +30,30 @@ def loggedout(request):
 class Login(LoginView):
     form_class = LoginForm
     template_name = 'login.html'
+
+
+@login_required
+def withdrawal(request):
+    if request.method == 'POST':
+        form = withdrawalForm(request.POST)
+        if form.is_valid():
+            email = request.user
+            raw_password = form.cleaned_data.get('password')
+            user = authenticate(email=email, password=raw_password)
+            if user is not None:
+                user.is_active = False
+                user.save()
+                return redirect('/user/withdrew')
+            else:
+                form.add_error(None, 'パスワードが違います')
+    else:
+        form = withdrawalForm()
+
+    return render(request, 'withdrawal.html', {'form': form})
+
+
+def withdrew(request):
+    return render(request, 'withdrew.html')
 
 
 def updateInfo(request):
