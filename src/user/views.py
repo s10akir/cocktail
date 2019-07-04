@@ -1,5 +1,13 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate
+from django.contrib.auth.views import (LoginView, PasswordChangeView,
+                                       PasswordChangeDoneView)
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.urls import reverse_lazy
+
+from .forms import SignupForm
+from .forms import LoginForm
+from .forms import PasswordUpdateForm
 from django.contrib.auth.views import LoginView
 from django.contrib.auth.decorators import login_required
 
@@ -32,6 +40,15 @@ class Login(LoginView):
     form_class = LoginForm
     template_name = 'login.html'
 
+
+class PasswordChange(LoginRequiredMixin, PasswordChangeView):
+    template_name = 'password-change.html'
+    form_class = PasswordUpdateForm
+    success_url = reverse_lazy('user:password_change_done')
+
+
+class PasswordChangeDone(LoginRequiredMixin, PasswordChangeDoneView):
+    template_name = 'password-change-done.html'
 
 @login_required     # ログインしていないと見れないように
 def passwordAuth(request):
