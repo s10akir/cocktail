@@ -4,18 +4,10 @@ from django.contrib.auth.views import (LoginView, PasswordChangeView,
                                        PasswordChangeDoneView)
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.urls import reverse_lazy
-
-from .forms import SignupForm
-from .forms import LoginForm
-from .forms import PasswordUpdateForm
-from django.contrib.auth.views import LoginView
 from django.contrib.auth.decorators import login_required
 
-from .forms import SignupForm
-from .forms import LoginForm
-from .forms import PasswordAuthForm
-from .forms import withdrawalForm
-from .forms import UpdateInfoForm
+from .forms import (SignupForm, LoginForm, PasswordAuthForm, withdrawalForm,
+                    UpdateInfoForm, PasswordUpdateForm)
 
 
 def signup(request):
@@ -44,22 +36,17 @@ class Login(LoginView):
 class PasswordChange(LoginRequiredMixin, PasswordChangeView):
     template_name = 'password-change.html'
     form_class = PasswordUpdateForm
-    success_url = reverse_lazy('user:password_change_done')
+    success_url = reverse_lazy('user:password-change-done')
 
 
 class PasswordChangeDone(LoginRequiredMixin, PasswordChangeDoneView):
     template_name = 'password-change-done.html'
 
-@login_required     # ログインしていないと見れないように
+
+@login_required  # ログインしていないと見れないように
 def passwordAuth(request):
     if request.method == 'POST':
         form = PasswordAuthForm(request.POST)
-
-
-@login_required
-def withdrawal(request):
-    if request.method == 'POST':
-        form = withdrawalForm(request.POST)
         if form.is_valid():
             email = request.user
             raw_password = form.cleaned_data.get('password')
@@ -72,6 +59,17 @@ def withdrawal(request):
         form = PasswordAuthForm()
 
     return render(request, 'password-auth.html', {'form': form})
+
+
+@login_required
+def withdrawal(request):
+    if request.method == 'POST':
+        form = withdrawalForm(request.POST)
+        if form.is_valid():
+            email = request.user
+            raw_password = form.cleaned_data.get('password')
+            user = authenticate(email=email, password=raw_password)
+            if user is not None:
                 user.is_active = False
                 user.save()
                 return redirect('/user/withdrew')
