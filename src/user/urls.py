@@ -14,4 +14,8 @@ urlpatterns = [
     path('password-authentication/',
          views.passwordAuth,
          name='password-authentication'),
+    path('withdrawal/', views.withdrawal, name='withdrawal'),
+    path('withdrew/', views.withdrew, name='withdrew'),
+    path('update-information/', views.updateInfo, name='update-information'),
+    path('updated-information/', views.updatedInfo, name='updated-information')
 ]
