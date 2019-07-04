@@ -16,4 +16,11 @@ urlpatterns = [
     path('password-change-done/',
          views.PasswordChangeDone.as_view(),
          name='password-change-done'),
+    path('password-authentication/',
+         views.passwordAuth,
+         name='password-authentication'),
+    path('withdrawal/', views.withdrawal, name='withdrawal'),
+    path('withdrew/', views.withdrew, name='withdrew'),
+    path('update-information/', views.updateInfo, name='update-information'),
+    path('updated-information/', views.updatedInfo, name='updated-information')
 ]
