@@ -1,7 +1,11 @@
-from django.contrib.auth import get_user_model
-from django.contrib.auth.forms import (UserCreationForm, AuthenticationForm,
-                                       PasswordChangeForm)
 from django import forms
+from django.contrib.auth import get_user_model
+from django.contrib.auth.forms import (
+    AuthenticationForm,
+    PasswordChangeForm,
+    UserCreationForm,
+)
+
 
 User = get_user_model()
 
@@ -23,14 +27,22 @@ class LoginForm(AuthenticationForm):
 
 
 class PasswordUpdateForm(PasswordChangeForm):
-    # 新規パスワードがoldもしくはbeforeを同じでないか確認
     def clean(self):
+        '''新規パスワードがoldもしくはbeforeと同じでないか確認
+
+        old_password -- 現在使用中のパスワード
+        before_password -- 1つ前に使用していたパスワード
+        '''
         old_password = self.cleaned_data.get('old_password')
         new_password = self.cleaned_data.get('new_password1')
         if old_password == new_password:
-            raise forms.ValidationError('パスワードが同じ')
+            raise forms.ValidationError(
+                'The new password is the same as the current password'
+            )
         elif self.user.old_password_validator(new_password):
-            raise forms.ValidationError('前回のパスワードと同じ')
+            raise forms.ValidationError(
+                'The new password is the same as the previous one'
+            )
 
     class Meta:
         model = User

@@ -1,13 +1,22 @@
-from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate
-from django.contrib.auth.views import (LoginView, PasswordChangeView,
-                                       PasswordChangeDoneView)
-from django.contrib.auth.mixins import LoginRequiredMixin
-from django.urls import reverse_lazy
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.views import (
+    LoginView,
+    PasswordChangeDoneView,
+    PasswordChangeView
+)
+from django.shortcuts import redirect, render
+from django.urls import reverse_lazy
 
-from .forms import (SignupForm, LoginForm, PasswordAuthForm, withdrawalForm,
-                    UpdateInfoForm, PasswordUpdateForm)
+from .forms import (
+    LoginForm,
+    PasswordAuthForm,
+    PasswordUpdateForm,
+    SignupForm,
+    UpdateInfoForm,
+    withdrawalForm,
+)
 
 
 def signup(request):
@@ -54,7 +63,7 @@ def passwordAuth(request):
             if user is not None:
                 return redirect('/')
             else:
-                form.add_error(None, 'パスワードが違います')
+                form.add_error(None, 'The password is incorrect')
     else:
         form = PasswordAuthForm()
 
@@ -74,7 +83,7 @@ def withdrawal(request):
                 user.save()
                 return redirect('/user/withdrew')
             else:
-                form.add_error(None, 'パスワードが違います')
+                form.add_error(None, 'The password is incorrect.')
     else:
         form = withdrawalForm()
 
@@ -92,7 +101,9 @@ def updateInfo(request):
         if form.is_valid():
             new_email = form.cleaned_data.get('email')
             if email == new_email:
-                form.add_error(None, '同じEmailです。別のEmailを入力してください。')
+                form.add_error(
+                    None, 'It is the same Email. Please enter another one.'
+                )
             else:
                 form.save()
                 return redirect('/user/updated-information')
