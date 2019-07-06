@@ -36,5 +36,5 @@ class User(AbstractBaseUser, PermissionsMixin):
     def set_before_password(self, raw_password):
         self.before_password = make_password(raw_password)
 
-    def old_password_validator(self, raw_password):
+    def before_password_validator(self, raw_password):
         return check_password(raw_password, self.before_password)

@@ -39,7 +39,7 @@ class PasswordUpdateForm(PasswordChangeForm):
             raise forms.ValidationError(
                 'The new password is the same as the current password'
             )
-        elif self.user.old_password_validator(new_password):
+        elif self.user.before_password_validator(new_password):
             raise forms.ValidationError(
                 'The new password is the same as the previous one'
             )
