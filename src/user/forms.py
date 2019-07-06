@@ -65,7 +65,7 @@ class PasswordAuthForm(forms.Form):
     password = forms.CharField(widget=forms.PasswordInput())
 
 
-class withdrawalForm(forms.Form):
+class WithdrawalForm(forms.Form):
     password = forms.CharField(widget=forms.PasswordInput())
 
 

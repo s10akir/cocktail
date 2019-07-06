@@ -15,7 +15,7 @@ from .forms import (
     PasswordUpdateForm,
     SignupForm,
     UpdateInfoForm,
-    withdrawalForm,
+    WithdrawalForm,
 )
 
 
@@ -73,7 +73,7 @@ def passwordAuth(request):
 @login_required
 def withdrawal(request):
     if request.method == 'POST':
-        form = withdrawalForm(request.POST)
+        form = WithdrawalForm(request.POST)
         if form.is_valid():
             email = request.user
             raw_password = form.cleaned_data.get('password')
@@ -85,7 +85,7 @@ def withdrawal(request):
             else:
                 form.add_error(None, 'The password is incorrect.')
     else:
-        form = withdrawalForm()
+        form = WithdrawalForm()
 
     return render(request, 'withdrawal.html', {'form': form})
 
