@@ -11,4 +11,17 @@ urlpatterns = [
     path('signup/', views.signup, name='signup'),
     path('logout/', auth_views.LogoutView.as_view(), name='logout'),
     path('loggedout/', views.loggedout, name='loggedout'),
+    path('password-change/',
+         views.PasswordChange.as_view(),
+         name='password-change'),
+    path('password-change-done/',
+         views.PasswordChangeDone.as_view(),
+         name='password-change-done'),
+    path('password-authentication/',
+         views.passwordAuth,
+         name='password-authentication'),
+    path('withdrawal/', views.withdrawal, name='withdrawal'),
+    path('withdrew/', views.withdrew, name='withdrew'),
+    path('update-information/', views.updateInfo, name='update-information'),
+    path('updated-information/', views.updatedInfo, name='updated-information')
 ]
