@@ -1,0 +1,58 @@
+// color set
+$lightblue: #67b6ce;
+$yellow: #eee3ab;
+$orange: #ee8434;
+$red: #f87060;
+$blue: #0b3954;
+
+html, body {
+  width: 100%;
+  height: 100%;
+}
+
+body {
+  overflow: auto;
+}
+
+
+.bg-light {
+  background-color: $lightblue !important;
+}
+
+.bg-blue {
+  background-color: $blue !important;
+}
+
+.bg-yellow {
+  background-color: $yellow !important;
+}
+
+.bg-orange {
+  background-color: $orange !important;
+}
+
+.bg-red {
+  background-color: $red !important;
+}
+
+.bg-blue {
+  background-color: $blue !important;
+}
+
+.fluid {
+  width: 100%;
+  height: 100%;
+
+  padding-top: 80px;
+}
+
+.center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.navbar-light {
+  color: $blue;
+}

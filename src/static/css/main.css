@@ -1,3 +1,23 @@
-.bg-light { background-color: #67b6ce; }
+html, body { width: 100%; height: 100%; }
+
+body { overflow: auto; }
+
+.bg-light { background-color: #67b6ce !important; }
+
+.bg-blue { background-color: #0b3954 !important; }
+
+.bg-yellow { background-color: #eee3ab !important; }
+
+.bg-orange { background-color: #ee8434 !important; }
+
+.bg-red { background-color: #f87060 !important; }
+
+.bg-blue { background-color: #0b3954 !important; }
+
+.fluid { width: 100%; height: 100%; padding-top: 80px; }
+
+.center { display: flex; align-items: center; justify-content: center; flex-direction: column; }
+
+.navbar-light { color: #0b3954; }
 
 /*# sourceMappingURL=main.css.map */

@@ -1,5 +1,118 @@
 {% extends 'base.html' %}
 {% load sass_tags %}
 {% block content %}
-    <h1>This Index Page.</h1>
+<link href="{% sass_src 'css/index.scss' %}" rel="stylesheet">
+
+<div id="main" class='fluid center'>
+  <div id="main-vision" class="jumbotron jumbotron-fluid">
+    <div class="container">
+      <h1 class="display-4">Cocktail</h1>
+      <p class="lead">This is a modified jumbotron that occupies the entire horizontal space of its parent.</p>
+    </div>
+  </div>
+</div>
+<div id="vision">
+  <div class="container">
+    <div class="row">
+      <div class="col-4 center">
+        <img src="{% sass_src 'img/logo.svg' %}" width="200" height="200">
+      </div>
+      <div class="col-8">
+        <h1>Vision</h1>
+        <p>
+          Cocktailはデジタルサイネージをパソコンとネットだけで柔軟なカスタムができます。
+          <br>
+          ウェブサイトで思いついた時にさっと作成、変更。
+          <br>
+          直感的な簡単操作でイメージを形に。
+          <br>
+          あなたの手で、あなたの想いで彩ってみませんか？
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+<div id="use-case" class="fluid">
+  <div class="row">
+    <div class="col-6">
+      <div class='use-case'>
+        <h1>Cocltail写真展</h1>
+      </div>
+    </div>
+    <div class="col-6">
+      <div class='use-case'>
+        <h1>Cocltailホテル</h1>
+      </div>
+    </div>
+  </div>
+</div>
+<div id="feature" class="center bg-light">
+  <div class="card mb-3">
+    <div class="row no-gutters">
+      <div class="col-md-3 bg-blue">
+        <img src="" class="card-img">
+      </div>
+      <div class="col-md-9">
+        <div class="card-body">
+          <h5 class="card-title">Feature 1</h5>
+          <p class="card-text">
+            This is a wider card with supporting text below as a natural lead-in to additional
+            content. This content is a little bit longer.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="card mb-3">
+    <div class="row no-gutters">
+      <div class="col-md-9">
+        <div class="card-body">
+          <h5 class="card-title">Feature 2</h5>
+          <p class="card-text">
+            This is a wider card with supporting text below as a natural lead-in to additional
+            content. This content is a little bit longer.
+          </p>
+        </div>
+      </div>
+      <div class="col-md-3 bg-red">
+        <img src="" class="card-img">
+      </div>
+    </div>
+  </div>
+  <div class="card mb-3">
+    <div class="row no-gutters">
+      <div class="col-md-3 bg-orange">
+        <img src="" class="card-img">
+      </div>
+      <div class="col-md-9">
+        <div class="card-body">
+          <h5 class="card-title">Feature 3</h5>
+          <p class="card-text">
+            This is a wider card with supporting text below as a natural lead-in to additional
+            content. This content is a little bit longer.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="card mb-3">
+    <div class="row no-gutters">
+      <div class="col-md-9">
+        <div class="card-body">
+          <h5 class="card-title">Feature 4</h5>
+          <p class="card-text">
+            This is a wider card with supporting text below as a natural lead-in to additional
+            content. This content is a little bit longer.
+          </p>
+        </div>
+      </div>
+      <div class="col-md-3 bg-yellow">
+        <img src="" class="card-img">
+      </div>
+    </div>
+  </div>
+</div>
+<div id="try" class="fluid">
+
+</div>
 {% endblock %}

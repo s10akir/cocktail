@@ -1,0 +1,19 @@
+#main { background-image: url("/static/img/main.jpeg"); background-size: cover; }
+
+#main-vision { border-radius: 5px; background-color: rgba(255, 255, 255, 0.6); }
+
+#vision { padding: 20px; }
+
+#vision img { height: 90%; width: auto; }
+
+#use-case { padding: 80px; }
+
+#feature { padding: 10px; }
+
+#try { background-image: url("/static/img/try.jpeg"); background-size: cover; }
+
+.use-case { margin: 5px; text-align: center; border: solid 1px #444; }
+
+.fluid .container { word-break: keep-all; }
+
+/*# sourceMappingURL=index.css.map */
