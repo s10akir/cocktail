@@ -4,5 +4,6 @@ cocktail
 cocktailプロジェクトの設計などのドキュメント
 
 # TOC
-[画面遷移図](uml/screen-transition-diagram.md)
+* [UML図](uml/uml.md)
+  * [画面遷移図](uml/screen-transition-diagram.md)
 
