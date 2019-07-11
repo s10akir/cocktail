@@ -7,3 +7,5 @@
 ## userアプリケーション
 ![user](images/screen-transition-diagram/user.png)
 
+## sceneアプリケーション
+![scene](./images/screen-transition-diagram/scene.png)
