@@ -10,7 +10,8 @@ class Scene(models.Model):
     # それともそのオブジェクトは残しておくのかを設定するもの
     # https://djangobrothers.com/blogs/on_delete/
     # user情報が不用意に消えるのを防ぐためにPROTECTを使用
-    user = models.ForeignKey('user.User', on_delete=models.PROTECT)
+    # db_columnでDBの列名をuser_idに明示的に変更
+    user_id = models.ForeignKey('user.User', on_delete=models.PROTECT, db_column='user_id')
     name = models.CharField(max_length=30)
     # シーンサイズの縦横の大きさ
     width = models.IntegerField()
