@@ -61,10 +61,6 @@ class PasswordUpdateForm(PasswordChangeForm):
         return self.user
 
 
-class PasswordAuthForm(forms.Form):
-    password = forms.CharField(widget=forms.PasswordInput())
-
-
 class WithdrawalForm(forms.Form):
     password = forms.CharField(widget=forms.PasswordInput())
 
