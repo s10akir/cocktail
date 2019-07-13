@@ -15,7 +15,7 @@ class Scene(models.Model):
     name = models.CharField(max_length=30)
     # シーンサイズの縦横の大きさ
     width = models.IntegerField()
-    higth = models.IntegerField()
+    hight = models.IntegerField()
     # シーンの縦横のグリッド数
     columm_count = models.IntegerField()
     line_count = models.IntegerField()
