@@ -15,9 +15,16 @@ package "scene" <<frame>> {
 
 package "user" <<frame>> {
   Object 会員情報変更ページ
+  Object パスワード変更ページ
+  Object 退会ページ
 
-  note right of 会員情報変更ページ
+  note left of 会員情報変更ページ
     ナビバーから常にアクセス可能
+  end note
+
+  note left of user
+    userアプリケーション内は
+    互いにサイドバーから遷移可能
   end note
 }
 
@@ -25,6 +32,7 @@ package "user" <<frame>> {
 ' フィールド定義
 シーン一覧ページ : 要ログイン
 会員情報変更ページ : 要ログイン
+会員情報変更ページ : 組織名, メールアドレス変更
 
 ' 遷移
 ' - メイン遷移
@@ -32,7 +40,6 @@ package "user" <<frame>> {
 ログインページ --down> シーン一覧ページ
 ' - 会員情報変更遷移
 scene--> 会員情報変更ページ
-会員情報変更ページ -up-> "退会" スタートページ
-
+退会ページ -up-> "退会" スタートページ
 
 @enduml
