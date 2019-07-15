@@ -1,8 +1,10 @@
+from django.contrib.auth.decorators import login_required
 from django.shortcuts import render
 
 from .models import Scene
 
 
+@login_required
 def showSceneData(request):
     if 'id' in request.GET:
         scene_id = request.GET.get('id')    # GET時のクエリ文字列のidからシーンIDを取得
