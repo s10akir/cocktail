@@ -100,12 +100,13 @@ def updateInfo(request):
         email = request.user.email
         if form.is_valid():
             new_email = form.cleaned_data.get('email')
+            new_name = form.cleaned_data.get('name')
             if email == new_email:
                 form.add_error(
                     None, 'It is the same Email. Please enter another one.'
                 )
             else:
-                form.save()
+                form.save(new_email, new_name)
                 return redirect('/user/updated-information')
     elif request.method == 'GET':
         form = UpdateInfoForm(instance=request.user)

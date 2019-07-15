@@ -76,3 +76,7 @@ class UpdateInfoForm(forms.ModelForm):
     class Meta():
         model = User
         fields = ('name', 'email')
+
+    def save(self, email, name):
+        self.instance.update_email(email)
+        self.instance.update_name(name)

@@ -38,3 +38,11 @@ class User(AbstractBaseUser, PermissionsMixin):
 
     def before_password_validator(self, raw_password):
         return check_password(raw_password, self.before_password)
+
+    def update_email(self, email):
+        self.email = email
+        self.save()
+
+    def update_name(self, name):
+        self.name = name
+        self.save()
