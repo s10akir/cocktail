@@ -1,3 +1,9 @@
 {% block context %}
 <h1>シーンサイズテンプレート</h1>
+{% for template in templates %}
+    ID : {{ template.id }}<br>
+    名前 : {{ template.name }}<br>
+    横幅 : {{ template.width }}<br>
+    高さ : {{ template.hight }}<br><br>
+{% endfor %}
 {% endblock  %}
