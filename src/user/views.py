@@ -113,5 +113,6 @@ def updateInfo(request):
     return render(request, 'update-information.html', {'form': form})
 
 
+@login_required
 def updatedInfo(request):
     return render(request, 'updated-information.html')
