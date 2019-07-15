@@ -1,0 +1,14 @@
+{% block content %}
+    <h1>名前とサイズを入力してください</h1>
+    <form action="" method="POST">
+        {% csrf_token %}
+        {% for field in form %}
+            {{ field }}
+            {{ field.help_text }}
+            {{ field.errors }}
+            <hr>
+        {% endfor %}
+        <button type="submit">作成</button>
+        <input type="hidden" name="next" value="{{ next }}" />
+    </form>
+{% endblock %}
