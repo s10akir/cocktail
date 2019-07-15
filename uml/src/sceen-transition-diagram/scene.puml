@@ -3,16 +3,19 @@
 title scene
 
 Object ログインページ
+note left of ログインページ
+  ナビバーから常にログアウトが可能
+end note
 
 package "scene : 要ログイン" {
-    Object シーン一覧
-    Object シーン管理
-    Object シーン表示
-    Object シーン編集
+  Object シーン一覧
+  Object シーン管理
+  Object シーン表示
+  Object シーン編集
 }
 
 package "user : 要ログイン" {
-    Object 会員ページ 
+  Object 会員情報変更ページ
 }
 
 '遷移
@@ -24,14 +27,14 @@ package "user : 要ログイン" {
 
 '他機能遷移
 ログインページ --> シーン一覧
-ログインページ --> 会員ページ
-シーン一覧 --> 会員ページ
-会員ページ --> シーン一覧
+ログインページ --> 会員情報変更ページ
+シーン一覧 --> 会員情報変更ページ
+会員情報変更ページ --> シーン一覧
 
 
-note left of シーン管理 {
-    各シーンごとの
-    CRUD処理..etcをするページ
-} 
+note left of シーン管理
+  各シーンごとの
+  CRUD処理..etcをするページ
+end note
 
 @enduml
