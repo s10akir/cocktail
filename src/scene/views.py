@@ -1,3 +1,5 @@
 from django.shortcuts import render
 
-# Create your views here.
+
+def showSceneData(request):
+    return render(request, 'show-scene-data.html')
