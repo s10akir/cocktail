@@ -1,5 +1,7 @@
 import uuid
 
+from uuid import UUID
+
 from django.db import models
 
 
@@ -22,3 +24,21 @@ class Scene(models.Model):
     # 作成日と更新日を自動取得
     created_at = models.DateTimeField(auto_now_add=True)
     update_at = models.DateTimeField(auto_now=True)
+
+    def get_scene_data(self, scene_id):
+        '''
+        受け取ったシーンIDに対応するクエリセットを返す
+        対応するデータがないや受け取ったシーンIDがUUID4ではない場合は何も返さない
+        '''
+        if self.validate_uuid4(scene_id):
+            return Scene.objects.filter(id=scene_id)
+
+    def validate_uuid4(self, string):
+        '''
+        受け取った文字列がUUID4か確認
+        '''
+        try:
+            UUID(string, version=4)
+        except ValueError:
+            return False
+        return True
