@@ -1,10 +1,7 @@
 from django import forms
-from django.core.validators import (
-    MaxValueValidator,
-    MinValueValidator
-)
+from django.core.validators import MaxValueValidator, MinValueValidator
 
-from scene.models.scene import Scene
+from scene.models import Scene
 
 
 class SceneConfigForm(forms.ModelForm):
