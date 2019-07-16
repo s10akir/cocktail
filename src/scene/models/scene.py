@@ -1,5 +1,7 @@
 import uuid
 
+from uuid import UUID
+
 from django.db import models
 
 
@@ -40,3 +42,21 @@ class Scene(models.Model):
 
     def set_line_count(self, line_count):
         self.line_count = line_count
+
+    def get_scene_data(self, scene_id):
+        '''
+        受け取ったシーンIDに対応するクエリセットを返す
+        対応するデータがない場合や受け取ったシーンIDがUUID4ではない場合は何も返さない
+        '''
+        if self.validate_uuid4(scene_id):
+            return Scene.objects.filter(id=scene_id)
+
+    def validate_uuid4(self, string):
+        '''
+        受け取った文字列がUUID4か確認
+        '''
+        try:
+            UUID(string, version=4)
+        except ValueError:
+            return False
+        return True
