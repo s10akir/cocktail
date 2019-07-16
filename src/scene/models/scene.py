@@ -25,6 +25,24 @@ class Scene(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     update_at = models.DateTimeField(auto_now=True)
 
+    def set_user_id(self, user):
+        self.user_id = user
+
+    def set_name(self, name):
+        self.name = name
+
+    def set_width(self, width):
+        self.width = width
+
+    def set_hight(self, hight):
+        self.hight = hight
+
+    def set_column_count(self, columm_count):
+        self.columm_count = columm_count
+
+    def set_line_count(self, line_count):
+        self.line_count = line_count
+
     def get_scene_data(self, scene_id):
         '''
         受け取ったシーンIDに対応するクエリセットを返す
