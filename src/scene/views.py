@@ -2,8 +2,7 @@ from django.contrib.auth.decorators import login_required
 from django.shortcuts import redirect, render
 
 from scene.forms import SceneConfigForm
-from scene.models import Scene
-from scene.models import SizeTemplate
+from scene.models import Scene, SizeTemplate
 
 
 @login_required
