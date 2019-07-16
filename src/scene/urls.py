@@ -1,10 +1,10 @@
 from django.urls import path
 
-from . import views
+from scene import views
 
 
 app_name = 'scene'
 
 urlpatterns = [
-    path('show-scene-data/', views.showSceneData, name='show-scene-data'),
+    path('show-scene-data/', views.show_scene_data, name='show-scene-data'),
 ]
