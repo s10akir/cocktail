@@ -6,3 +6,9 @@ class SizeTemplate(models.Model):
     name = models.CharField(max_length=30)
     width = models.IntegerField()
     hight = models.IntegerField()
+
+    def get_size_templates(self):
+        '''
+        SizeTemplateから全件取得する
+        '''
+        return SizeTemplate.objects.all()
