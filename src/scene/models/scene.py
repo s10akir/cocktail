@@ -28,7 +28,7 @@ class Scene(models.Model):
     def get_scene_data(self, scene_id):
         '''
         受け取ったシーンIDに対応するクエリセットを返す
-        対応するデータがないや受け取ったシーンIDがUUID4ではない場合は何も返さない
+        対応するデータがない場合や受け取ったシーンIDがUUID4ではない場合は何も返さない
         '''
         if self.validate_uuid4(scene_id):
             return Scene.objects.filter(id=scene_id)
