@@ -1,11 +1,11 @@
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render
 
-from .models import SizeTemplate
+from scene.models import SizeTemplate
 
 
 @login_required
-def showSizeTemplates(request):
+def show_size_templates(request):
     size_template = SizeTemplate()
     templates = size_template.get_size_templates()
     templates_data = {'templates': templates}

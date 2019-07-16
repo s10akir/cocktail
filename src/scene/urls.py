@@ -1,6 +1,6 @@
 from django.urls import path
 
-from . import views
+from scene import views
 
 
 app_name = 'scene'
@@ -8,7 +8,7 @@ app_name = 'scene'
 urlpatterns = [
     path(
         'show-size-templates/',
-        views.showSizeTemplates,
+        views.show_size_templates,
         name='show-size-templates'
     ),
 ]
