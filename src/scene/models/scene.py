@@ -1,23 +1,23 @@
-import uuid
-
-from uuid import UUID
+from uuid import UUID, uuid4
 
 from django.db import models
 
 
 class Scene(models.Model):
-    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    id = models.UUIDField(primary_key=True, default=uuid4, editable=False)
     # on_deleteとは参照するオブジェクトが削除されたときに、
     # それと紐づけられたオブジェクトも一緒に削除するのか、
     # それともそのオブジェクトは残しておくのかを設定するもの
     # https://djangobrothers.com/blogs/on_delete/
     # user情報が不用意に消えるのを防ぐためにPROTECTを使用
     # db_columnでDBの列名をuser_idに明示的に変更
-    user_id = models.ForeignKey('user.User', on_delete=models.PROTECT, db_column='user_id')
+    user_id = models.ForeignKey('user.User',
+                                on_delete=models.PROTECT,
+                                db_column='user_id')
     name = models.CharField(max_length=30)
     # シーンサイズの縦横の大きさ
     width = models.IntegerField()
-    hight = models.IntegerField()
+    height = models.IntegerField()
     # シーンの縦横のグリッド数
     columm_count = models.IntegerField()
     line_count = models.IntegerField()
@@ -34,8 +34,8 @@ class Scene(models.Model):
     def set_width(self, width):
         self.width = width
 
-    def set_hight(self, hight):
-        self.hight = hight
+    def set_height(self, height):
+        self.height = height
 
     def set_column_count(self, columm_count):
         self.columm_count = columm_count

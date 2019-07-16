@@ -29,7 +29,8 @@ def show_size_templates(request):
 @login_required
 def show_scene_data(request):
     if 'id' in request.GET:
-        scene_id = request.GET.get('id')    # GET時のクエリ文字列のidからシーンIDを取得
+        # GET時のクエリ文字列のidからシーンIDを取得
+        scene_id = request.GET.get('id')
         scene = Scene()
         scene_data = scene.get_scene_data(scene_id)
 

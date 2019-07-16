@@ -11,9 +11,9 @@ class SceneConfigForm(forms.ModelForm):
     width = forms.IntegerField(validators=[MinValueValidator(128),
                                MaxValueValidator(8192)],
                                help_text='シーンサイズの横の大きさを入力してください')
-    hight = forms.IntegerField(validators=[MinValueValidator(96),
-                               MaxValueValidator(4320)],
-                               help_text='シーンサイズの縦の大きさを入力してください')
+    height = forms.IntegerField(validators=[MinValueValidator(96),
+                                MaxValueValidator(4320)],
+                                help_text='シーンサイズの縦の大きさを入力してください')
     # 試験的に最大横グリッド数を100、縦グリッド数を100。
     column_count = forms.IntegerField(validators=[MinValueValidator(1),
                                       MaxValueValidator(100)],
@@ -24,7 +24,7 @@ class SceneConfigForm(forms.ModelForm):
 
     class Meta():
         model = Scene
-        fields = ('name', 'width', 'hight', 'column_count', 'line_count')
+        fields = ('name', 'width', 'height', 'column_count', 'line_count')
 
     def save(self, commit=True):
         user = self.instance
@@ -32,7 +32,7 @@ class SceneConfigForm(forms.ModelForm):
         scene.set_user_id(user)
         scene.set_name(self.cleaned_data.get('name'))
         scene.set_width(self.cleaned_data.get('width'))
-        scene.set_hight(self.cleaned_data.get('hight'))
+        scene.set_height(self.cleaned_data.get('height'))
         scene.set_column_count(self.cleaned_data.get('column_count'))
         scene.set_line_count(self.cleaned_data.get('line_count'))
         if commit:
