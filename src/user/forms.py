@@ -80,5 +80,5 @@ class UpdateInfoForm(forms.ModelForm):
     def save(self):
         name = self.cleaned_data.get('name')
         email = self.cleaned_data.get('email')
-        self.instance.update_email(email)
         self.instance.update_name(name)
+        self.instance.update_email(email)
