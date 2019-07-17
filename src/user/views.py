@@ -11,7 +11,6 @@ from django.urls import reverse_lazy
 
 from .forms import (
     LoginForm,
-    PasswordAuthForm,
     PasswordUpdateForm,
     SignupForm,
     UpdateInfoForm,
@@ -50,24 +49,6 @@ class PasswordChange(LoginRequiredMixin, PasswordChangeView):
 
 class PasswordChangeDone(LoginRequiredMixin, PasswordChangeDoneView):
     template_name = 'password-change-done.html'
-
-
-@login_required  # ログインしていないと見れないように
-def passwordAuth(request):
-    if request.method == 'POST':
-        form = PasswordAuthForm(request.POST)
-        if form.is_valid():
-            email = request.user
-            raw_password = form.cleaned_data.get('password')
-            user = authenticate(email=email, password=raw_password)
-            if user is not None:
-                return redirect('/')
-            else:
-                form.add_error(None, 'The password is incorrect')
-    else:
-        form = PasswordAuthForm()
-
-    return render(request, 'password-auth.html', {'form': form})
 
 
 @login_required
