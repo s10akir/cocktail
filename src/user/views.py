@@ -75,6 +75,7 @@ def withdrew(request):
     return render(request, 'withdrew.html')
 
 
+@login_required
 def updateInfo(request):
     if request.method == 'POST':
         form = UpdateInfoForm(request.POST, instance=request.user)
@@ -93,5 +94,6 @@ def updateInfo(request):
     return render(request, 'update-information.html', {'form': form})
 
 
+@login_required
 def updatedInfo(request):
     return render(request, 'updated-information.html')
