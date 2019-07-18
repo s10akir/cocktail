@@ -1,12 +1,16 @@
 {% block content %}
     <h1>シーン情報</h1>
-    {% for scene in scene_data %}
-        シーンオブジェクト : {{ scene }}<br>
-        シーン名 : {{ scene.name }}<br>
-        シーン横幅 : {{ scene.width }}<br>
-        シーン高さ : {{ scene.height }}<br>
-        ユーザID : {{ scene.user_id.id }}<br>
-        ユーザ名 : {{ scene.user_id.name }}<br>
-        ユーザメアド : {{ scene.user_id.email }}<br>
-    {% endfor %}
+    {% if error %}
+        {{ error }}
+    {% else %}
+        {% for scene in scene_data %}
+            シーンオブジェクト : {{ scene }}<br>
+            シーン名 : {{ scene.name }}<br>
+            シーン横幅 : {{ scene.width }}<br>
+            シーン高さ : {{ scene.height }}<br>
+            ユーザID : {{ scene.user_id.id }}<br>
+            ユーザ名 : {{ scene.user_id.name }}<br>
+            ユーザメアド : {{ scene.user_id.email }}<br>
+        {% endfor %}
+    {% endif %}
 {% endblock %}

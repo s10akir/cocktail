@@ -44,19 +44,18 @@ class Scene(models.Model):
         self.line_count = line_count
 
     def get_scene_data(self, scene_id):
-        '''
-        受け取ったシーンIDに対応するクエリセットを返す
-        対応するデータがない場合や受け取ったシーンIDがUUID4ではない場合は何も返さない
-        '''
-        if self.validate_uuid4(scene_id):
-            return Scene.objects.filter(id=scene_id)
-
-    def validate_uuid4(self, string):
-        '''
-        受け取った文字列がUUID4か確認
-        '''
+        """受け取ったシーンIDに対応するクエリセットを返す
+        対応するデータがない場合や受け取ったシーンIDがUUID4ではない場合はエラーを返す
+        """
+        error = None
         try:
-            UUID(string, version=4)
+            UUID(scene_id)
         except ValueError:
-            return False
-        return True
+            error = "Invalid ID format"
+            return None, error
+
+        scene_data = Scene.objects.filter(id=scene_id)
+        if len(scene_data) == 0:
+            error = "Scene not found"
+
+        return scene_data, error

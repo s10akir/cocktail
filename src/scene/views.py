@@ -19,8 +19,7 @@ def configure_scene(request):
 
 @login_required
 def show_size_templates(request):
-    size_template = SizeTemplate()
-    templates = size_template.get_size_templates()
+    templates = SizeTemplate.objects.all()
     templates_data = {'templates': templates}
     return render(request, 'show-size-templates.html', templates_data)
 
@@ -30,11 +29,13 @@ def show_scene_data(request):
     if 'id' in request.GET:
         # GET時のクエリ文字列のidからシーンIDを取得
         scene_id = request.GET.get('id')
-        scene = Scene()
-        scene_data = scene.get_scene_data(scene_id)
-
-        if scene_data is not None:
-            data = {'scene_data': scene_data}
+        if scene_id is not None:
+            scene = Scene()
+            scene_data, error = scene.get_scene_data(scene_id)
+            data = {
+                'scene_data': scene_data,
+                'error': error
+            }
             return render(request, 'show-scene-data.html', data)
 
     return render(request, 'show-scene-data.html')

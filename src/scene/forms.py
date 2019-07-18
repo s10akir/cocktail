@@ -6,14 +6,14 @@ from scene.models import Scene
 
 class SceneConfigForm(forms.ModelForm):
     name = forms.CharField(max_length=30, help_text='シーン名を入力してください')
-    # 下記サイトを参考に最大値は横を8192、縦を4320。最小値は横128、縦96。
+    # 下記サイトを参考に最大値は幅を8192、高さを4320。最小値は幅128、高さ96。
     # http://www.quel.jp/etc/monitor-size/
     width = forms.IntegerField(validators=[MinValueValidator(128),
                                MaxValueValidator(8192)],
-                               help_text='シーンサイズの横の大きさを入力してください')
+                               help_text='シーンの幅を入力してください')
     height = forms.IntegerField(validators=[MinValueValidator(96),
                                 MaxValueValidator(4320)],
-                                help_text='シーンサイズの縦の大きさを入力してください')
+                                help_text='シーンの高さを入力してください')
     # 試験的に最大横グリッド数を100、縦グリッド数を100。
     column_count = forms.IntegerField(validators=[MinValueValidator(1),
                                       MaxValueValidator(100)],
