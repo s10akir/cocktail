@@ -71,7 +71,7 @@ class UpdateInfoForm(forms.ModelForm):
     password = forms.CharField(
         widget=forms.PasswordInput(),
         max_length=256,
-        help_text='情報を変更するためにはパスワードを入力してください'
+        help_text='ユーザ情報を変更するためにはパスワードの入力が必要です'
         )
 
     class Meta():
@@ -80,7 +80,7 @@ class UpdateInfoForm(forms.ModelForm):
 
     def clean_password(self):
         password = self.cleaned_data.get('password')
-        if not self.instance.password_auth(password):
+        if not self.instance.auth_password(password):
             raise forms.ValidationError(
                 'The password is incorrect.'
             )
