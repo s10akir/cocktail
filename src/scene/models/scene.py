@@ -43,7 +43,7 @@ class Scene(models.Model):
     def set_line_count(self, line_count):
         self.line_count = line_count
 
-    def get_scene_data(self, scene_id):
+    def get_scene_data(self, scene_id, user_id):
         """受け取ったシーンIDに対応するクエリセットを返す
         対応するデータがない場合や受け取ったシーンIDがUUID4ではない場合はエラーを返す
         """
@@ -54,7 +54,7 @@ class Scene(models.Model):
             error = "Invalid ID format"
             return None, error
 
-        scene_data = Scene.objects.filter(id=scene_id)
+        scene_data = Scene.objects.filter(id=scene_id, user_id=user_id)
         if len(scene_data) == 0:
             error = "Scene not found"
 

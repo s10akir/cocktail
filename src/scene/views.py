@@ -29,9 +29,10 @@ def show_scene_data(request):
     if 'id' in request.GET:
         # GET時のクエリ文字列のidからシーンIDを取得
         scene_id = request.GET.get('id')
+        user_id = request.user.id
         if scene_id is not None:
             scene = Scene()
-            scene_data, error = scene.get_scene_data(scene_id)
+            scene_data, error = scene.get_scene_data(scene_id, user_id)
             data = {
                 'scene_data': scene_data,
                 'error': error
