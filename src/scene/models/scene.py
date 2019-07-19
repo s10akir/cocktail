@@ -44,9 +44,9 @@ class Scene(models.Model):
         self.line_count = line_count
 
     def get_scene_data(self, scene_id, user_id):
-        """受け取ったシーンIDに対応するクエリセットを返す
-        対応するデータがない場合や受け取ったシーンIDがUUID4ではない場合はエラーを返す
-        """
+        # 受け取ったシーンIDに対応するクエリセットを返す
+        # 対応するデータがない場合や受け取ったシーンIDがUUID4ではない場合はエラーを返す
+
         error = None
         try:
             UUID(scene_id)
