@@ -1,7 +1,7 @@
 import uuid
 
 from django.contrib.auth.base_user import AbstractBaseUser
-from django.contrib.auth.hashers import make_password, check_password
+from django.contrib.auth.hashers import make_password
 from django.contrib.auth.models import PermissionsMixin
 from django.db import models
 
@@ -35,12 +35,6 @@ class User(AbstractBaseUser, PermissionsMixin):
 
     def set_before_password(self, raw_password):
         self.before_password = make_password(raw_password)
-
-    def before_password_validator(self, raw_password):
-        return check_password(raw_password, self.before_password)
-
-    def auth_password(self, raw_password):
-        return check_password(raw_password, self.password)
 
     def update_email(self, email):
         self.email = email
