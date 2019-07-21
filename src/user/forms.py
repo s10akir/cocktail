@@ -29,6 +29,7 @@ class LoginForm(AuthenticationForm):
 class PasswordUpdateForm(PasswordChangeForm):
     def clean(self):
         '''新規パスワードがoldもしくはbeforeと同じでないか確認
+
         old_password -- 現在使用中のパスワード
         before_password -- 1つ前に使用していたパスワード
         '''
