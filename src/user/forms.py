@@ -5,7 +5,6 @@ from django.contrib.auth.forms import (
     PasswordChangeForm,
     UserCreationForm,
 )
-from django.contrib.auth.hashers import check_password
 
 
 User = get_user_model()
@@ -30,7 +29,6 @@ class LoginForm(AuthenticationForm):
 class PasswordUpdateForm(PasswordChangeForm):
     def clean(self):
         '''新規パスワードがoldもしくはbeforeと同じでないか確認
-
         old_password -- 現在使用中のパスワード
         before_password -- 1つ前に使用していたパスワード
         '''
@@ -40,7 +38,7 @@ class PasswordUpdateForm(PasswordChangeForm):
             raise forms.ValidationError(
                 'The new password is the same as the current password'
             )
-        elif check_password(new_password, self.user.before_password):
+        elif self.user.before_password_validator(new_password):
             raise forms.ValidationError(
                 'The new password is the same as the previous one'
             )
