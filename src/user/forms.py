@@ -68,10 +68,22 @@ class WithdrawalForm(forms.Form):
 class UpdateInfoForm(forms.ModelForm):
     name = forms.CharField(max_length=50, help_text='新しい個人名を入力してください')
     email = forms.EmailField(max_length=254, help_text='新しいメールアドレスを入力してください')
+    password = forms.CharField(
+        widget=forms.PasswordInput(),
+        max_length=256,
+        help_text='ユーザ情報を変更するためにはパスワードの入力が必要です'
+        )
 
     class Meta():
         model = User
         fields = ('name', 'email')
+
+    def clean_password(self):
+        raw_password = self.cleaned_data.get('password')
+        if not self.instance.check_password(raw_password):
+            raise forms.ValidationError(
+                'The password is incorrect.'
+            )
 
     def save(self):
         name = self.cleaned_data.get('name')
