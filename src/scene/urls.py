@@ -10,5 +10,6 @@ urlpatterns = [
     path('show-size-templates/',
          views.show_size_templates,
          name='show-size-templates'),
-    path('show-scene-data/', views.show_scene_data, name='show-scene-data')
+    path('show-scene-data/', views.show_scene_data, name='show-scene-data'),
+    path('scene-editor/', views.scene_editor, name='scene-editor'),
 ]

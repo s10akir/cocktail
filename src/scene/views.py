@@ -40,3 +40,6 @@ def show_scene_data(request):
             return render(request, 'show-scene-data.html', data)
 
     return render(request, 'show-scene-data.html')
+
+def scene_editor(request):
+    return render(request, 'scene-editor.html')
