@@ -1,0 +1,25 @@
+#modules{
+    display: flex;
+}
+
+.module{
+    margin: 5px;
+    border: 1px solid;
+    width: 100px;
+    height: 100px;
+    border-radius: 5px;
+}
+
+/*#frame{
+    overflow: auto;
+    width: 90%;
+    height: 75%;
+}*/
+#scene{
+    position: relative;
+    margin: 20px;
+    border: solid;
+    width: 1920px;
+    height: 1080px;
+    transform-origin: top left;
+}

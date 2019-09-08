@@ -1,5 +1,9 @@
 from django.contrib.auth.decorators import login_required
+from django.core.files import File
+from django.http import HttpResponse
 from django.shortcuts import redirect, render
+
+from cocktail.settings import BASE_DIR
 
 from scene.forms import SceneConfigForm
 from scene.models import Scene, SizeTemplate
@@ -40,6 +44,13 @@ def show_scene_data(request):
             return render(request, 'show-scene-data.html', data)
 
     return render(request, 'show-scene-data.html')
+
+
+def api(request, moduleName):
+    f = open(BASE_DIR + '/modules/' + moduleName + '.js', "rb")
+    module = File(f)
+    return HttpResponse(content=module, content_type='application/javascript')
+
 
 def scene_editor(request):
     return render(request, 'scene-editor.html')
