@@ -13,6 +13,7 @@ let addModule = function(moduleId, dom) {
 
 $(function() {
 
+    let deleteMode = false;
     // var zoomScale = 1;
 
     $('.module').draggable({
@@ -51,7 +52,7 @@ $(function() {
             // $(this).append(clone);
 
             moduleNo++;
-            let frame = $('<div></div', {
+            let frame = $('<div></div>', {
                 id: moduleNo,
                 css: {
                     position: 'absolute',
@@ -86,9 +87,28 @@ $(function() {
                 //     ui.position.left = ui.position.left / zoomScale;
                 //     ui.position.top  = ui.position.top / zoomScale;
                 // }
-            });
+            })
+            .click(function() {
+                if(deleteMode){
+                    if(window.confirm('モジュールを削除します'))
+                        $(this).remove();
+                }
+            })
         }
     });
+
+    $('#delete').click(function() {
+        if(deleteMode) {
+            $(this).html('モジュール<br>削除');
+            deleteMode = false;
+            $(this).css('background-color', '');
+        }
+        else {
+            $(this).html('削除モード');
+            deleteMode = true;
+            $(this).css('background-color', '#FF7575');
+        }
+    })
 
     // $("#scaleUp").click(function() {
     //     zoomScale += 0.1;

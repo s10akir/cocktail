@@ -23,3 +23,13 @@
     height: 1080px;
     transform-origin: top left;
 }
+
+#delete{
+    width: 150px;
+    height: 100px;
+    float: right;
+    text-align: center;
+    font-size: 30px;
+    border: 1px solid;
+    user-select: none;
+}
