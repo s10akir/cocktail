@@ -1,7 +1,10 @@
-{% extends 'base.html' %}
+{% extends 'layout.html' %}
 
-{% block content %}
-    <h1>退会しますか</h1>
+{% block element %}
+<div class="card m-3">
+    <div class="card-header">
+        <h6 class="card-title">退会</h6>
+    </div>
     <form action="" method="POST">
         {% csrf_token %}
         <p>ユーザー名 : {{ user.email }}</p>
@@ -9,7 +12,29 @@
             <p>{{ error }}</p>
         {% endfor %}
         {{ form.password }}
-        <button type="submit">退会</button>
-        <input type="hidden" name="next" value="{{ next }}" />
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#confirmDialog">
+            退会
+        </button>
+        <div class="modal" id="confirmDialog" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLongTitle">退会処理</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="閉じる">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        本当に退会してよろしいでしょうか？
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">閉じる</button>
+                        <button type="submit" class="btn btn-primary">変更を保存</button>
+                        <input type="hidden" name="next" value="{{ next }}" />
+                    </div>
+                </div>
+            </div>
+        </div>
     </form>
+</div>
 {% endblock %}

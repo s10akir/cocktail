@@ -23,5 +23,8 @@ urlpatterns = [
     path('withdrawal/', views.withdrawal, name='withdrawal'),
     path('withdrew/', views.withdrew, name='withdrew'),
     path('update-information/', views.updateInfo, name='update-information'),
-    path('updated-information/', views.updatedInfo, name='updated-information')
+    path('updated-information/', views.updatedInfo, name='updated-information'),
+    path('account/', views.updateInfo, name='account'),
+    path('password/', views.PasswordChange.as_view(), name='password'),
+    path('withdrawal/', views.withdrawal, name='withdrawal'),
 ]

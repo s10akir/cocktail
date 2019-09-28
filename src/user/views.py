@@ -1,4 +1,4 @@
-from django.contrib.auth import authenticate
+from django.contrib.auth import authenticate, update_session_auth_hash
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.views import (
@@ -45,7 +45,17 @@ class Login(LoginView):
 class PasswordChange(LoginRequiredMixin, PasswordChangeView):
     template_name = 'password-change.html'
     form_class = PasswordUpdateForm
-    success_url = reverse_lazy('user:password-change-done')
+    success_url = reverse_lazy('user:account')
+    alert_flag = True
+
+    def form_valid(self, form):
+        form.save()
+        context = {
+            'form': form,
+            'alert_flag': self.alert_flag
+        }
+        update_session_auth_hash(self.request, form.user)
+        return render(self.request, 'password-change.html', context)
 
 
 class PasswordChangeDone(LoginRequiredMixin, PasswordChangeDoneView):
@@ -81,7 +91,7 @@ def withdrawal(request):
             if user is not None:
                 user.is_active = False
                 user.save()
-                return redirect('/user/withdrew')
+                return redirect('/')
             else:
                 form.add_error(None, 'The password is incorrect.')
     else:
@@ -106,7 +116,12 @@ def updateInfo(request):
                 )
             else:
                 form.save()
-                return redirect('/user/updated-information')
+                alert_flag = True
+                context = {
+                    'form': form,
+                    'alert_flag': alert_flag
+                }
+                return render(request, 'update-information.html', context)
     elif request.method == 'GET':
         form = UpdateInfoForm(instance=request.user)
     return render(request, 'update-information.html', {'form': form})

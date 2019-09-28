@@ -1,24 +1,25 @@
 {% extends 'base.html' %}
 
 {% block content %}
-  <div class="container">
-    <div class="row">
-      <div class="col-sm-12 col-md-3 order-last order-md-first">
-        <div class="card">
-          <div class="card-header">
-            <h5 class="card-title">User</h5>
-          </div>
-          <ul class="list-group list-group-flush">
-            <li class="list-group-item"><a href="/user/account">ユーザー情報</a></li>
-            <li class="list-group-item"><a href="/user/password">パスワード変更</a></li>
-            <li class="list-group-item"><a href="/user/withdrawal">退会</a></li>
-          </ul>
+<div class="container">
+  <div class="row">
+    <div class="col-sm-12 col-md-3 order-last order-md-first">
+      <div class="card">
+        <div class="card-header">
+          <h5 class="card-title">User</h5>
         </div>
-      </div>
-      <div class="col">
-        {% block element %}
-        {% endblock %}
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item"><a href="/user/account">ユーザー情報</a></li>
+          <li class="list-group-item"><a href="/user/password">パスワード変更</a></li>
+          <li class="list-group-item"><a href="/user/withdrawal">退会</a></li>
+        </ul>
       </div>
     </div>
+    <div class="col-sm-12 col-md-3 order-last order-md-first">
+      {% block element %}
+        {{ element }}
+      {% endblock %}
+    </div>
   </div>
+</div>
 {% endblock %}
