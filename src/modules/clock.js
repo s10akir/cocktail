@@ -10,15 +10,21 @@ function initialize(dom) {
     div.appendChild(clock);
 
     dom.appendChild(div);
-  }
+}
   
   // 枠作成
-  function defaultFrame() {
+function defaultFrame() {
     let div = document.createElement('div');
+    div.classList.add('module');
+    div.setAttribute('data-id', 'clock');
     div.style.cssText = 'position: relative; border: solid; width: 100%; height: 100%; box-sizing: border-box;';
     return div;
-  }
-  
-  export default {
-    initialize
-  }
+}
+
+function save(dom){
+    return null;
+}
+
+export default {
+    initialize, save
+}
