@@ -13,3 +13,4 @@ class Module_used(models.Model):
     column = models.CharField(max_length=10)
     grid_width = models.CharField(max_length=10)
     grid_height = models.CharField(max_length=10)
+    data = models.CharField(max_length=512)
