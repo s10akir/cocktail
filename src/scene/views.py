@@ -1,7 +1,9 @@
+import json
+
 from django.contrib.auth.decorators import login_required
 from django.core.files import File
-from django.http import HttpResponse
-from django.shortcuts import redirect, render
+from django.http import HttpResponse, HttpResponseServerError
+from django.shortcuts import redirect, render, render_to_response
 
 from cocktail.settings import BASE_DIR
 
@@ -54,3 +56,13 @@ def api_module(request, moduleName):
 
 def scene_editor(request):
     return render(request, 'scene-editor.html')
+
+
+def api_save_module(request):
+    if request.method == 'POST':
+        json_str = request.body.decode('utf-8')
+        json_data = json.loads(json_str)
+        for data in json_data:
+            print(data)
+        # return HttpResponseServerError()
+        return HttpResponse(status=204)

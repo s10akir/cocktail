@@ -148,11 +148,69 @@ $(function() {
             })
             .then(() => {
                 if(index === length - 1){       // 最後のモジュールが終わったら
-                    // alert(dataAry);
-                    console.log(dataAry);
+                    let jsonData = []
+                    for(let i = 0; i < dataAry.length; i++){
+                        let json = {
+                            'top':dataAry[i][0],
+                            'left':dataAry[i][1],
+                            'height':dataAry[i][2],
+                            'width':dataAry[i][3],
+                            'moduleId':dataAry[i][4],
+                            'data':dataAry[i][5]
+                        };
+                        jsonData.push(json);
+                    }
+                    // console.log(JSON.stringify(jsonData))
+
+                    let token = getCookie('csrftoken');
+                    // console.log(token)
+                    $.ajax({
+                        url: '/scene/api/save-module/',
+                        type: 'POST',
+                        headers: {'X-CSRFToken': token},
+                        data: JSON.stringify(jsonData),
+                        dataType: 'json'
+                    })
+                    .done((data) => {
+                        console.log('ok');
+                    })
+                    .fail((err) => {
+                        console.log(err);
+                    })
                 }
             })
         })
+    });
+
+
+    // csrf_token取得(下記参照)
+    // https://qiita.com/yat1ma30/items/c7545896295761a34c77
+    function getCookie(name) {
+        var cookieValue = null;
+        if (document.cookie && document.cookie != '') {
+            var cookies = document.cookie.split(';');
+            for (var i = 0; i < cookies.length; i++) {
+                var cookie = jQuery.trim(cookies[i]);
+                // Does this cookie string begin with the name we want?
+                if (cookie.substring(0, name.length + 1) == (name + '=')) {
+                    cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                    break;
+                }
+            }
+        }
+        return cookieValue;
+    }
+    function csrfSafeMethod(method) {
+        // these HTTP methods do not require CSRF protection
+        return (/^(GET|POST|HEAD|OPTIONS|TRACE)$/.test(method));
+    }
+    $.ajaxSetup({
+        crossDomain: false, // obviates need for sameOrigin test
+        beforeSend: function(xhr, settings) {
+            if (!csrfSafeMethod(settings.type)) {
+                xhr.setRequestHeader("X-CSRFToken", csrftoken);
+            }
+        }
     });
 
 
