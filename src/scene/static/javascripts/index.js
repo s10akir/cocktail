@@ -3,7 +3,7 @@ let modules = [];
 let moduleNo = 0;
 
 let addModule = function(moduleId, dom) {
-    import('/scene/api/' + moduleId)
+    import('/scene/api/module/' + moduleId)
     .then((module) => {
         module.default.initialize(dom);
         modules.push(module);
@@ -140,7 +140,7 @@ $(function() {
 
             // console.log('module名 : ' + element.getAttribute('data-id'));
 
-            import('/scene/api/' + moduleId)
+            import('/scene/api/module/' + moduleId)
             .then((module) => {
                 let data = module.default.save(element);
                 // console.log(data);
