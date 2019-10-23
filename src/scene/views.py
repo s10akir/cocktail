@@ -46,7 +46,7 @@ def show_scene_data(request):
     return render(request, 'show-scene-data.html')
 
 
-def api(request, moduleName):
+def api_module(request, moduleName):
     f = open(BASE_DIR + '/modules/' + moduleName + '.js', "rb")
     module = File(f)
     return HttpResponse(content=module, content_type='application/javascript')
