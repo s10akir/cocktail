@@ -152,9 +152,9 @@ $(function() {
             .then(() => {
                 if(index === length - 1){       // 最後のモジュールが終わったら
                     let jsonData = []
-                    jsonData.push({'sceneId':sceneId});
                     for(let i = 0; i < dataAry.length; i++){
                         let json = {
+                            'sceneId':sceneId,
                             'top':dataAry[i][0],
                             'left':dataAry[i][1],
                             'height':dataAry[i][2],
