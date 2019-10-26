@@ -17,7 +17,7 @@ def configure_scene(request):
         form = SceneConfigForm(request.POST, instance=request.user)
         if form.is_valid():
             form.save()
-            return redirect('/')
+            return redirect('/scene/scene-editor')
     else:
         form = SceneConfigForm()
     return render(request, 'scene-configure.html', {'form': form})
