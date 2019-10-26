@@ -111,6 +111,9 @@ $(function() {
     });
 
     $('#output').click(function() {
+        // シーンIDの取得
+        let sceneId = $('#sceneId').val();
+        // console.log(sceneId);
         // 各モジュールのデータ保管用の2次元配列の初期化
         let length = $('#scene').find('.use-module').length;
         let dataAry = new Array(length);
@@ -149,6 +152,7 @@ $(function() {
             .then(() => {
                 if(index === length - 1){       // 最後のモジュールが終わったら
                     let jsonData = []
+                    jsonData.push({'sceneId':sceneId});
                     for(let i = 0; i < dataAry.length; i++){
                         let json = {
                             'top':dataAry[i][0],

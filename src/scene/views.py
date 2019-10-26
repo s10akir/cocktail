@@ -16,8 +16,8 @@ def configure_scene(request):
     if request.method == 'POST':
         form = SceneConfigForm(request.POST, instance=request.user)
         if form.is_valid():
-            form.save()
-            return redirect('/scene/scene-editor')
+            scene = form.save()
+            return redirect('/scene/scene-editor?id=' + str(scene.id))
     else:
         form = SceneConfigForm()
     return render(request, 'scene-configure.html', {'form': form})
@@ -55,7 +55,9 @@ def api_module(request, moduleName):
 
 
 def scene_editor(request):
-    return render(request, 'scene-editor.html')
+    sceneId = request.GET['id']
+    # print(sceneId)
+    return render(request, 'scene-editor.html', {'sceneId': sceneId})
 
 
 def api_save_module(request):
