@@ -32,5 +32,28 @@
         <input id="scaleDown" type="button" value="縮小">
         <input id="scaleReset" type="button" value="リセット"> -->
         <script type="module" src="{% static 'javascripts/index.js' %}"></script>
+        <script>
+            $(function() {
+                $.ajax({
+                    url: '/scene/api/read-module/',
+                    type: 'GET',
+                    headers: {'X-CSRFToken': '{{csrf_token}}'},
+                    data: {sceneId: $('#sceneId').val()},
+                    dataType: 'json'
+                })
+                .done((data) => {
+                    let modules = data.modules;
+                    if(modules.length < 1)
+                        console.log('モジュールなし');
+                    for(let i = 0; i < modules.length; i++){
+                        console.log(modules[i]);
+                    }
+
+                })
+                .fail((err) => {
+                    console.log(err);
+                })
+            })
+        </script>
     </body>
 </html>

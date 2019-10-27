@@ -15,4 +15,5 @@ urlpatterns = [
 
     path('api/module/<str:moduleName>', views.api_module, name='api-module'),
     path('api/save-module/', views.api_save_module, name='api-save-module'),
+    path('api/read-module/', views.api_read_module, name='api-read-module'),
 ]

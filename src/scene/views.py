@@ -3,7 +3,8 @@ import json
 from django.contrib.auth.decorators import login_required
 from django.core.files import File
 from django.http import HttpResponse, HttpResponseServerError
-from django.shortcuts import redirect, render, render_to_response
+from django.http.response import JsonResponse
+from django.shortcuts import redirect, render
 
 from cocktail.settings import BASE_DIR
 
@@ -68,3 +69,29 @@ def api_save_module(request):
             print(data)
         # return HttpResponseServerError()
         return HttpResponse(status=204)
+
+
+def api_read_module(request):
+    if request.method == 'GET':
+        # print(request.GET.get('sceneId'))
+        json = {
+            'modules': [
+                {
+                    "top": "0px",
+                    "left": "100px",
+                    "height": "100px",
+                    "width": "100px",
+                    "moduleId": "text",
+                    "data": "設定ボタンから編集できます,15px"
+                },
+                {
+                    "top": "150px",
+                    "left": "350px",
+                    "height": "100px",
+                    "width": "100px",
+                    "moduleId": "text",
+                    "data": "設定ボタンから編集できます,15px"
+                }
+            ]
+        }
+        return JsonResponse(json)
