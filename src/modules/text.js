@@ -1,4 +1,4 @@
-function initialize(dom) {
+function initialize(dom, data=null) {
 	// 変数
     let fontSize = 15;
 	let inSetting = false;
@@ -93,6 +93,16 @@ function initialize(dom) {
 	fontSizeDown.onclick = function() {
         fontSize -= 5;
         textEditor.style.fontSize = fontSize;
+	}
+
+	// データ読み込み
+	if(data != null){
+		let moduleData = data.split(',');
+		textBox.innerHTML = moduleData[0];
+		textEditor.value = moduleData[0];
+		fontSize = parseInt(moduleData[1]);
+		textBox.style.fontSize = fontSize;
+		textEditor.style.fontSize = fontSize;
 	}
 
 	dom.appendChild(div);
