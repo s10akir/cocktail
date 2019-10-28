@@ -88,7 +88,7 @@ $(function() {
                 // }
             })
             .click(function() {
-            if(deleteMode){
+            if($('#deleteMode').val() === 'on'){
                 if(window.confirm('モジュールを削除します'))
                     $(this).remove()
             }
@@ -96,16 +96,16 @@ $(function() {
         }
     });
 
-    let deleteMode = false;
+    let deleteMode = $('#deleteMode');
     $('#delete').click(function() {
-        if (deleteMode) {
+        if (deleteMode.val() === 'on') {
             $(this).html("モジュール<br>削除");
-            deleteMode = false;
+            deleteMode.val('off');
             $(this).css('background-color', '')
         }
         else {
             $(this).html("削除モード");
-            deleteMode = true;
+            deleteMode.val('on');
             $(this).css('background-color', '#FF7575')
         }
     });

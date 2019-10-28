@@ -9,6 +9,7 @@
     </head>
     <body>
         <input type="hidden" id="sceneId" name="sceneId" value="{{ sceneId }}">
+        <input type="hidden" id="deleteMode" name="deleteMode" value="off">
 
         <div id="output" class="rightBox">
             出力
@@ -73,6 +74,12 @@
                         })
                         .resizable({
                             grid: [50, 50],
+                        })
+                        .click(function() {
+                            if($('#deleteMode').val() === 'on'){
+                                if(window.confirm('モジュールを削除します'))
+                                    $(this).remove()
+                            }
                         })
                     }
                 })
