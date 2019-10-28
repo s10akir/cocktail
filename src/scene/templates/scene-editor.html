@@ -47,8 +47,34 @@
                         console.log('モジュールなし');
                     for(let i = 0; i < modules.length; i++){
                         console.log(modules[i]);
-                    }
+                        let frame = $('<div></div', {
+                            id: i + 1000,
+                            class: 'use-module',
+                            css: {
+                                position: 'absolute',
+                                top: modules[i].top,
+                                left: modules[i].left,
+                                width: modules[i].width,
+                                height: modules[i].height,
+                            },
+                        });
+                        $("#scene").append(frame)
+                        import('/scene/api/module/' + modules[i].moduleId)
+                        .then((module) => {
+                            let dom = $('#' + (i + 1000))[0]
+                            module.default.initialize(dom, modules[i].data);
+                        })
 
+                        $('#' + (i + 1000))
+                        .draggable({
+                            handle: 'div',
+                            containment: '#scene',
+                            grid: [50, 50],
+                        })
+                        .resizable({
+                            grid: [50, 50],
+                        })
+                    }
                 })
                 .fail((err) => {
                     console.log(err);
