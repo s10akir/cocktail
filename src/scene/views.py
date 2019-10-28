@@ -80,17 +80,17 @@ def api_read_module(request):
                     "top": "0px",
                     "left": "100px",
                     "height": "100px",
-                    "width": "100px",
+                    "width": "150px",
                     "moduleId": "text",
-                    "data": "設定ボタンから編集できます,15px"
+                    "data": "ロードしたもの,15px"
                 },
                 {
                     "top": "150px",
                     "left": "350px",
-                    "height": "100px",
-                    "width": "100px",
+                    "height": "200px",
+                    "width": "250px",
                     "moduleId": "text",
-                    "data": "設定ボタンから編集できます,15px"
+                    "data": "ロードしたやつ,30px"
                 }
             ]
         }
