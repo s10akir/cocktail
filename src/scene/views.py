@@ -49,6 +49,12 @@ def show_scene_data(request):
     return render(request, 'show-scene-data.html')
 
 
+def scene_list(request):
+    scenes = Scene.objects.all().filter(user_id=request.user.id).order_by('-created_at')     # シーンの作成順に取得
+    print(scenes)
+    return render(request, 'scene-list.html', {'scenes': scenes})
+
+
 def api_module(request, moduleName):
     f = open(BASE_DIR + '/modules/' + moduleName + '.js', "rb")
     module = File(f)

@@ -12,6 +12,7 @@ urlpatterns = [
          name='show-size-templates'),
     path('show-scene-data/', views.show_scene_data, name='show-scene-data'),
     path('scene-editor/', views.scene_editor, name='scene-editor'),
+    path('scene-list/', views.scene_list, name='scene-list'),
 
     path('api/module/<str:moduleName>', views.api_module, name='api-module'),
     path('api/save-module/', views.api_save_module, name='api-save-module'),

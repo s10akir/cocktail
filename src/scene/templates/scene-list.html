@@ -1,0 +1,6 @@
+{% block content %}
+    <h1>シーン一覧</h1>
+    {% for scene in scenes %}
+        <h3><a href="../scene-editor?id={{ scene.id }}">{{ scene.name }}</a></h3>
+    {% endfor %}
+{% endblock %}
