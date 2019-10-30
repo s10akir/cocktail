@@ -9,7 +9,7 @@ from django.shortcuts import redirect, render
 from cocktail.settings import BASE_DIR
 
 from scene.forms import SceneConfigForm
-from scene.models import Scene, SizeTemplate
+from scene.models import Scene, SizeTemplate, Module_used
 
 
 @login_required
@@ -73,25 +73,26 @@ def api_save_module(request):
 
 def api_read_module(request):
     if request.method == 'GET':
-        # print(request.GET.get('sceneId'))
+        sceneId = request.GET.get('sceneId')
+        # print(sceneId)
+
+        modules = []
+        modules_data = Module_used.objects.all().filter(scene_id=sceneId)
+        for module_data in modules_data:
+            # print(module_data)
+            module = {
+                "top": module_data.row,
+                "left": module_data.column,
+                "height": module_data.grid_height,
+                "width": module_data.grid_width,
+                "moduleId": module_data.module_id,
+                "data": module_data.data
+            }
+            # print(module)
+            modules.append(module)
+        # print(modules)
+
         json = {
-            'modules': [
-                {
-                    "top": "0px",
-                    "left": "100px",
-                    "height": "100px",
-                    "width": "150px",
-                    "moduleId": "text",
-                    "data": "ロードしたもの,15px"
-                },
-                {
-                    "top": "150px",
-                    "left": "350px",
-                    "height": "200px",
-                    "width": "250px",
-                    "moduleId": "text",
-                    "data": "ロードしたやつ,30px"
-                }
-            ]
+            'modules': modules
         }
         return JsonResponse(json)
