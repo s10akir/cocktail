@@ -18,6 +18,7 @@ services:
     ports:
       - 3306:3306
     volumes:
+      - ./conf.d/my.cnf:/etc/mysql/my.cnf
       - ./data:/var/lib/mysql
     container_name: maria
     environment:
