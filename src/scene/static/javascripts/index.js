@@ -123,6 +123,9 @@ $(function() {
 
         // モジュールの外枠のデータ(親側で作ったほう)
         $('#scene').find('.use-module').each(function(index, element) {
+            dataAry[index].push(element.id);
+            // console.log('id: ' + element.id);
+
             dataAry[index].push(element.style.top);
             // console.log('top : ' + element.style.top);
 
@@ -155,12 +158,13 @@ $(function() {
                     for(let i = 0; i < dataAry.length; i++){
                         let json = {
                             'sceneId':sceneId,
-                            'top':dataAry[i][0],
-                            'left':dataAry[i][1],
-                            'height':dataAry[i][2],
-                            'width':dataAry[i][3],
-                            'moduleId':dataAry[i][4],
-                            'data':dataAry[i][5]
+                            'moduleId':dataAry[i][0],
+                            'top':dataAry[i][1],
+                            'left':dataAry[i][2],
+                            'height':dataAry[i][3],
+                            'width':dataAry[i][4],
+                            'module':dataAry[i][5],
+                            'data':dataAry[i][6]
                         };
                         jsonData.push(json);
                     }

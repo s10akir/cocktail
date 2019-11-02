@@ -71,8 +71,15 @@ def api_save_module(request):
     if request.method == 'POST':
         json_str = request.body.decode('utf-8')
         json_data = json.loads(json_str)
+
+        # 全件削除
+        sceneId = json_data[0].get('sceneId')
+        sceneId = Scene.objects.only('id').filter(id=sceneId)
+        Module_used.objects.filter(scene_id=sceneId[0]).delete()
+
         for data in json_data:
             print(data)
+            Module_used.module_save(request, data)
         # return HttpResponseServerError()
         return HttpResponse(status=204)
 
@@ -85,8 +92,8 @@ def api_read_module(request):
         modules = []
         modules_data = Module_used.objects.all().filter(scene_id=sceneId)
         for module_data in modules_data:
-            # print(module_data)
             module = {
+                "id": module_data.id,
                 "top": module_data.row,
                 "left": module_data.column,
                 "height": module_data.grid_height,

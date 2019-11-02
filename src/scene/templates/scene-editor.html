@@ -49,7 +49,7 @@
                     for(let i = 0; i < modules.length; i++){
                         console.log(modules[i]);
                         let frame = $('<div></div', {
-                            id: i + 1000,
+                            id: modules[i].id,
                             class: 'use-module',
                             css: {
                                 position: 'absolute',
@@ -62,11 +62,11 @@
                         $("#scene").append(frame)
                         import('/scene/api/module/' + modules[i].moduleId)
                         .then((module) => {
-                            let dom = $('#' + (i + 1000))[0]
+                            let dom = $('#' + modules[i].id)[0]
                             module.default.initialize(dom, modules[i].data);
                         })
 
-                        $('#' + (i + 1000))
+                        $('#' + modules[i].id)
                         .draggable({
                             handle: 'div',
                             containment: '#scene',
